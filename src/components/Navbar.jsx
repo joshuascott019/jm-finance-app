@@ -1,12 +1,17 @@
-// Navbar.jsx
-import React from 'react';
+import React, { useContext } from 'react';
+import translations from './translations';
 import { NavLink } from 'react-router-dom';
+import { CurrencyContext } from '../components/CurrencyContext'; // Import the Currency context
 
 const Navbar = () => {
+  const { language } = useContext(CurrencyContext); // Access currency state and updater
+
+  const t = translations[language];
+
   return (
     <nav className="bg-slate-800 p-4 shadow-md">
       <div className="container mx-auto flex justify-between items-center">
-        <h1 className="text-white text-xl font-bold">Finance Tracker</h1>
+        <h1 className="text-white text-xl font-bold">{t.financeTracker}</h1>
         <ul className="flex space-x-4">
           <li>
             <NavLink
@@ -17,7 +22,7 @@ const Navbar = () => {
                 }`
               }
             >
-              Home
+              {t.home}
             </NavLink>
           </li>
           <li>
@@ -29,7 +34,7 @@ const Navbar = () => {
                 }`
               }
             >
-              Incomes
+              {t.incomes}
             </NavLink>
           </li>
           <li>
@@ -41,7 +46,7 @@ const Navbar = () => {
                 }`
               }
             >
-              Expenses
+              {t.expenses}
             </NavLink>
           </li>
           <li>
@@ -53,7 +58,7 @@ const Navbar = () => {
                 }`
               }
             >
-              Savings
+              {t.savings}
             </NavLink>
           </li>
           <li>
@@ -65,7 +70,7 @@ const Navbar = () => {
                 }`
               }
             >
-              Settings
+              {t.settings}
             </NavLink>
           </li>
         </ul>
