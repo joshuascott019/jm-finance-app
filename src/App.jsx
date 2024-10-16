@@ -6,22 +6,23 @@ import Incomes from './pages/Incomes';
 import Expenses from './pages/Expenses';
 import Savings from './pages/Savings';
 import Settings from './pages/Settings';
-
-// Import your other components here
+import { CurrencyProvider } from './components/CurrencyContext'; // Import the CurrencyProvider
 
 function App() {
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/incomes" element={<Incomes />} />
-        <Route path="/expenses" element={<Expenses />} />
-        <Route path="/savings" element={<Savings />} />
-        <Route path="/settings" element={<Settings />} />
-        {/* Add other routes as needed */}
-      </Routes>
-    </Router>
+    <CurrencyProvider>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/incomes" element={<Incomes />} />
+          <Route path="/expenses" element={<Expenses />} />
+          <Route path="/savings" element={<Savings />} />
+          <Route path="/settings" element={<Settings />} />{' '}
+          {/* Add the settings route */}
+        </Routes>
+      </Router>
+    </CurrencyProvider>
   );
 }
 

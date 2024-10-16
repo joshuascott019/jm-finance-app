@@ -1,14 +1,12 @@
-// Settings.jsx
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
+import { CurrencyContext } from '../components/CurrencyContext'; // Import the Currency context
 
 const Settings = () => {
-  const [currency, setCurrency] = useState('USD');
-  const [language, setLanguage] = useState('English');
-  const [notification, setNotification] = useState(true);
+  const { currency, changeCurrency } = useContext(CurrencyContext); // Access currency state and updater
 
-  const handleCurrencyChange = (e) => setCurrency(e.target.value);
-  const handleLanguageChange = (e) => setLanguage(e.target.value);
-  const handleNotificationToggle = () => setNotification(!notification);
+  const handleCurrencyChange = (e) => {
+    changeCurrency(e.target.value);
+  };
 
   return (
     <div className="container mx-auto p-4">
@@ -26,42 +24,8 @@ const Settings = () => {
             className="w-full p-2 mt-1 border border-slate-300 rounded-md"
           >
             <option value="USD">USD - US Dollar</option>
-            <option value="EUR">EUR - Euro</option>
-            <option value="GBP">GBP - British Pound</option>
-            <option value="JPY">JPY - Japanese Yen</option>
-            <option value="AUD">AUD - Australian Dollar</option>
-            {/* Add more currencies as needed */}
+            <option value="BRL">BRL - Brazilian Real</option>
           </select>
-        </div>
-
-        {/* Language Setting */}
-        <div className="mb-4">
-          <label className="block text-slate-700">Language</label>
-          <select
-            value={language}
-            onChange={handleLanguageChange}
-            className="w-full p-2 mt-1 border border-slate-300 rounded-md"
-          >
-            <option value="English">English</option>
-            <option value="Spanish">Spanish</option>
-            <option value="French">French</option>
-            <option value="German">German</option>
-            <option value="Chinese">Chinese</option>
-            {/* Add more languages as needed */}
-          </select>
-        </div>
-
-        {/* Notifications Setting */}
-        <div className="mb-4">
-          <label className="block text-slate-700">Notifications</label>
-          <button
-            onClick={handleNotificationToggle}
-            className={`w-full p-2 mt-1 border ${
-              notification ? 'bg-green-500' : 'bg-red-500'
-            } text-white rounded-md`}
-          >
-            {notification ? 'Enabled' : 'Disabled'}
-          </button>
         </div>
       </div>
 
