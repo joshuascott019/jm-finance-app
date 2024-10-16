@@ -1,6 +1,17 @@
-export const formatCurrency = (amount, currency) => {
-  return new Intl.NumberFormat(currency === 'USD' ? 'en-US' : 'pt-BR', {
+export const formatCurrency = (amount, currency, language) => {
+  const options = {
     style: 'currency',
-    currency: currency,
-  }).format(amount);
+    currency,
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  };
+
+  if (language === 'pt') {
+    options.currencyDisplay = 'symbol'; // Optional: Customize further if needed
+  }
+
+  return new Intl.NumberFormat(
+    language === 'pt' ? 'pt-BR' : 'en-US',
+    options
+  ).format(amount);
 };

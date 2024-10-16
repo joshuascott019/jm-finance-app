@@ -2,10 +2,11 @@ import React, { useContext } from 'react';
 import { CurrencyContext } from '../components/CurrencyContext'; // Import the Currency context
 
 const Settings = () => {
-  const { currency, changeCurrency } = useContext(CurrencyContext); // Access currency state and updater
+  const { currency, setCurrency, language, setLanguage } =
+    useContext(CurrencyContext); // Access currency state and updater
 
   const handleCurrencyChange = (e) => {
-    changeCurrency(e.target.value);
+    setCurrency(e.target.value);
   };
 
   return (
@@ -25,6 +26,19 @@ const Settings = () => {
           >
             <option value="USD">USD - US Dollar</option>
             <option value="BRL">BRL - Brazilian Real</option>
+          </select>
+        </div>
+        <div className="mb-6">
+          <h2 className="text-xl font-semibold text-slate-700 mb-2">
+            Language
+          </h2>
+          <select
+            value={language}
+            onChange={(e) => setLanguage(e.target.value)}
+            className="w-full p-2 border border-slate-300 rounded-md"
+          >
+            <option value="en">English</option>
+            <option value="pt">Português (Brasil)</option>
           </select>
         </div>
       </div>
