@@ -22,7 +22,7 @@ const Settings = () => {
 
         {/* Currency Setting */}
         <div className="mb-4">
-          <label className="block text-slate-700">Preferred Currency</label>
+          <label className="block text-slate-700">{t.preferredCurrency}</label>
           <select
             value={currency}
             onChange={handleCurrencyChange}
