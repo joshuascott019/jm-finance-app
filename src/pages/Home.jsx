@@ -3,19 +3,7 @@ import { CurrencyContext } from '../components/CurrencyContext'; // Import the C
 import { formatCurrency } from '../components/formatCurrency'; // Import the currency formatter
 
 const Home = () => {
-  const { currency } = useContext(CurrencyContext); // Access the current currency
-
-  const [incomes] = useState([
-    { description: 'Salary', amount: 5000, date: '2024-10-01' },
-    { description: 'Freelance', amount: 1500, date: '2024-10-10' },
-  ]);
-  const [expenses] = useState([
-    { description: 'Rent', amount: 1200, date: '2024-10-05' },
-    { description: 'Groceries', amount: 300, date: '2024-10-07' },
-  ]);
-  const [savings] = useState([
-    { description: 'Emergency Fund', amount: 2000, date: '2024-10-12' },
-  ]);
+  const { incomes, currency, expenses, savings } = useContext(CurrencyContext); // Access the current currency
 
   const totalIncomes = incomes.reduce(
     (total, income) => total + parseFloat(income.amount),

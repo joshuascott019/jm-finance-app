@@ -3,11 +3,7 @@ import { CurrencyContext } from '../components/CurrencyContext'; // Import the C
 import { formatCurrency } from '../components/formatCurrency'; // Import the currency formatter
 
 const Expenses = () => {
-  const { currency } = useContext(CurrencyContext);
-  const [expenses, setExpenses] = useState([
-    { description: 'Rent', amount: 1200, date: '2024-10-05' },
-    { description: 'Groceries', amount: 300, date: '2024-10-07' },
-  ]);
+  const { currency, expenses, setExpenses } = useContext(CurrencyContext);
 
   const [newExpense, setNewExpense] = useState({
     description: '',
