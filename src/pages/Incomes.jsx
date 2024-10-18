@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { CurrencyContext } from '../components/CurrencyContext'; // Import the context
 import { formatCurrency } from '../components/formatCurrency';
 
@@ -12,6 +12,21 @@ const Incomes = () => {
   });
 
   const [editingIndex, setEditingIndex] = useState(null); // Track the index being edited
+
+  // Load incomes from localStorage on component mount
+  useEffect(() => {
+    const storedIncomes = localStorage.getItem('incomes');
+    if (storedIncomes) {
+      setIncomes(JSON.parse(storedIncomes)); // Load saved incomes into state
+    }
+  }, [setIncomes]); // Depend on setIncomes to ensure it only runs once on mount
+
+  // Save incomes to localStorage whenever incomes state changes
+  useEffect(() => {
+    if (incomes.length > 0) {
+      localStorage.setItem('incomes', JSON.stringify(incomes));
+    }
+  }, [incomes]); // Save to localStorage whenever incomes state updates
 
   // Handle form submission (for both adding and editing)
   const handleFormSubmit = (e) => {
