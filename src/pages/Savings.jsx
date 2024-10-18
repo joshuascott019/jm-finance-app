@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { CurrencyContext } from '../components/CurrencyContext'; // Import the Currency context
+import { CurrencyContext } from '../components/CurrencyContext';
 import { formatCurrency } from '../components/formatCurrency';
 
 const Savings = () => {
@@ -11,39 +11,32 @@ const Savings = () => {
     date: '',
   });
 
-  const [editingIndex, setEditingIndex] = useState(null); // Track the index being edited
-
-  // Handle form submission (for both adding and editing)
+  const [editingIndex, setEditingIndex] = useState(null);
   const handleFormSubmit = (e) => {
     e.preventDefault();
     if (newSavings.description && newSavings.amount > 0 && newSavings.date) {
       if (editingIndex !== null) {
-        // If we are editing, update the specific savings entry
         const updatedSavings = savings.map((savings, index) =>
           index === editingIndex ? newSavings : savings
         );
         setSavings(updatedSavings);
-        setEditingIndex(null); // Reset editing index
+        setEditingIndex(null);
       } else {
-        // Otherwise, add a new savings entry
         setSavings([...savings, newSavings]);
       }
 
-      // Reset form fields
       setNewSavings({ description: '', amount: '', date: '' });
     }
   };
 
-  // Handle editing
   const handleEdit = (index) => {
-    setNewSavings(savings[index]); // Populate the form with the selected savings
-    setEditingIndex(index); // Track the index being edited
+    setNewSavings(savings[index]);
+    setEditingIndex(index);
   };
 
-  // Handle deleting an savings entry
   const handleDelete = (index) => {
     const updatedSavings = savings.filter((_, i) => i !== index);
-    setSavings(updatedSavings); // Update savings by removing the selected entry
+    setSavings(updatedSavings);
   };
 
   return (

@@ -13,13 +13,6 @@ const Incomes = () => {
 
   const [editingIndex, setEditingIndex] = useState(null);
 
-  // useEffect(() => {
-  //   const storedIncomes = localStorage.getItem('incomes');
-  //   if (storedIncomes) {
-  //     setIncomes(JSON.parse(storedIncomes));
-  //   }
-  // }, [setIncomes]);
-
   useEffect(() => {
     if (incomes.length > 0) {
       localStorage.setItem('incomes', JSON.stringify(incomes));

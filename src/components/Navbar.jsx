@@ -1,11 +1,9 @@
 import React, { useContext } from 'react';
 import translations from './translations';
 import { NavLink } from 'react-router-dom';
-import { CurrencyContext } from '../components/CurrencyContext'; // Import the Currency context
-
+import { CurrencyContext } from '../components/CurrencyContext';
 const Navbar = () => {
-  const { language } = useContext(CurrencyContext); // Access currency state and updater
-
+  const { language } = useContext(CurrencyContext);
   const t = translations[language];
 
   return (

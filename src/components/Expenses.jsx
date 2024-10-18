@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { CurrencyContext } from '../components/CurrencyContext'; // Import the Currency context
-
+import { CurrencyContext } from '../components/CurrencyContext';
 const Expenses = () => {
   const { currency, expenses, setExpenses } = useContext(CurrencyContext);
 
@@ -10,39 +9,32 @@ const Expenses = () => {
     date: '',
   });
 
-  const [editingIndex, setEditingIndex] = useState(null); // Track the index being edited
-
-  // Handle form submission (for both adding and editing)
+  const [editingIndex, setEditingIndex] = useState(null);
   const handleFormSubmit = (e) => {
     e.preventDefault();
     if (newExpense.description && newExpense.amount > 0 && newExpense.date) {
       if (editingIndex !== null) {
-        // If we are editing, update the specific expense entry
         const updatedExpenses = expenses.map((expense, index) =>
           index === editingIndex ? newExpense : expense
         );
         setExpenses(updatedExpenses);
-        setEditingIndex(null); // Reset editing index
+        setEditingIndex(null);
       } else {
-        // Otherwise, add a new expense entry
         setExpenses([...expenses, newExpense]);
       }
 
-      // Reset form fields
       setNewExpense({ description: '', amount: '', date: '' });
     }
   };
 
-  // Handle editing
   const handleEdit = (index) => {
-    setNewExpense(expenses[index]); // Populate the form with the selected expense
-    setEditingIndex(index); // Track the index being edited
+    setNewExpense(expenses[index]);
+    setEditingIndex(index);
   };
 
-  // Handle deleting an expense entry
   const handleDelete = (index) => {
     const updatedExpenses = expenses.filter((_, i) => i !== index);
-    setExpenses(updatedExpenses); // Update expenses by removing the selected entry
+    setExpenses(updatedExpenses);
   };
 
   return (

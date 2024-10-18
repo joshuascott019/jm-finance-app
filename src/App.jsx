@@ -6,8 +6,7 @@ import Incomes from './pages/Incomes';
 import Expenses from './pages/Expenses';
 import Savings from './pages/Savings';
 import Settings from './pages/Settings';
-import { CurrencyProvider } from './components/CurrencyContext'; // Import the CurrencyProvider
-
+import { CurrencyProvider } from './components/CurrencyContext';
 function App() {
   return (
     <CurrencyProvider>

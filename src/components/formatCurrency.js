@@ -7,7 +7,7 @@ export const formatCurrency = (amount, currency, language) => {
   };
 
   if (language === 'pt') {
-    options.currencyDisplay = 'symbol'; // Optional: Customize further if needed
+    options.currencyDisplay = 'symbol';
   }
 
   return new Intl.NumberFormat(

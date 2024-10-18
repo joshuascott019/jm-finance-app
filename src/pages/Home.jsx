@@ -1,13 +1,12 @@
 import React, { useContext, useState } from 'react';
-import { CurrencyContext } from '../components/CurrencyContext'; // Import the Currency context
-import { formatCurrency } from '../components/formatCurrency'; // Import the currency formatter
+import { CurrencyContext } from '../components/CurrencyContext';
+import { formatCurrency } from '../components/formatCurrency';
 import Incomes from '../components/incomes';
 import Expenses from '../components/Expenses';
 import Savings from '../components/Savings';
 
 const Home = () => {
-  const { incomes, currency, expenses, savings } = useContext(CurrencyContext); // Access the current currency
-
+  const { incomes, currency, expenses, savings } = useContext(CurrencyContext);
   const totalIncomes = incomes.reduce(
     (total, income) => total + parseFloat(income.amount),
     0

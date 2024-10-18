@@ -1,10 +1,9 @@
 import React, { useContext } from 'react';
 import translations from '../components/translations';
-import { CurrencyContext } from '../components/CurrencyContext'; // Import the Currency context
-
+import { CurrencyContext } from '../components/CurrencyContext';
 const Settings = () => {
   const { currency, setCurrency, language, setLanguage } =
-    useContext(CurrencyContext); // Access currency state and updater
+    useContext(CurrencyContext);
   const t = translations[language];
 
   const handleCurrencyChange = (e) => {
