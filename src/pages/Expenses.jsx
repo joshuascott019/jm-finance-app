@@ -1,6 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { CurrencyContext } from '../components/CurrencyContext';
 import { formatCurrency } from '../components/formatCurrency';
+import { FaEdit } from 'react-icons/fa';
+import { MdDeleteForever } from 'react-icons/md';
 
 const Expenses = () => {
   const { currency, expenses, setExpenses } = useContext(CurrencyContext);
@@ -86,28 +88,30 @@ const Expenses = () => {
         </button>
       </form>
 
-      {/* Display incomes with Edit/Delete buttons */}
+      {/* Display expenses with Edit/Delete buttons */}
       <div className="bg-slate-100 p-4 rounded-md shadow-md">
         {expenses.map((expense, index) => (
-          <div key={index} className="mb-4">
-            <p className="text-xl text-slate-800">{expense.description}</p>
-            <p className="text-2xl text-red-600 font-bold">
+          <div key={index} className="mb-4 flex items-center justify-between">
+            <div>
+              <p className="text-xl text-slate-800">{expense.description}</p>
+              <p className="text-sm text-slate-600">{expense.date}</p>
+            </div>
+            <p className="text-2xl text-slate-600 font-bold">
               {formatCurrency(expense.amount, currency)} {currency}
             </p>
-            <p className="text-sm text-slate-600">{expense.date}</p>
-            {/* Edit and Delete buttons */}
+
             <div className="mt-2">
               <button
                 onClick={() => handleEdit(index)}
-                className="bg-yellow-400 text-white px-4 py-2 rounded-md hover:bg-yellow-300 mr-2"
+                className="text-slate-800 text-4xl px-4 py-2 rounded-md mr-2"
               >
-                Edit
+                <FaEdit />
               </button>
               <button
                 onClick={() => handleDelete(index)}
-                className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-500"
+                className="text-slate-800 text-4xl px-4 py-2 rounded-md "
               >
-                Delete
+                <MdDeleteForever />
               </button>
             </div>
           </div>
