@@ -13,12 +13,12 @@ const Incomes = () => {
 
   const [editingIndex, setEditingIndex] = useState(null);
 
-  useEffect(() => {
-    const storedIncomes = localStorage.getItem('incomes');
-    if (storedIncomes) {
-      setIncomes(JSON.parse(storedIncomes));
-    }
-  }, [setIncomes]);
+  // useEffect(() => {
+  //   const storedIncomes = localStorage.getItem('incomes');
+  //   if (storedIncomes) {
+  //     setIncomes(JSON.parse(storedIncomes));
+  //   }
+  // }, [setIncomes]);
 
   useEffect(() => {
     if (incomes.length > 0) {
@@ -28,7 +28,7 @@ const Incomes = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    if (newIncome.description && newIncome.amount && newIncome.date) {
+    if (newIncome.description && newIncome.amount > 0 && newIncome.date) {
       if (editingIndex !== null) {
         const updatedIncomes = incomes.map((income, index) =>
           index === editingIndex ? newIncome : income
@@ -75,7 +75,10 @@ const Incomes = () => {
             type="number"
             value={newIncome.amount}
             onChange={(e) =>
-              setNewIncome({ ...newIncome, amount: e.target.value })
+              setNewIncome({
+                ...newIncome,
+                amount: parseFloat(e.target.value) || '',
+              })
             }
             className="w-full p-2 mt-1 border border-slate-300 rounded-md"
           />
