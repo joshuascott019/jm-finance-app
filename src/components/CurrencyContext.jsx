@@ -3,10 +3,9 @@ import React, { createContext, useState, useEffect } from 'react';
 export const CurrencyContext = createContext();
 
 export const CurrencyProvider = ({ children }) => {
-  const [currency, setCurrency] = useState('USD'); // Default currency
-  const [language, setLanguage] = useState('en'); // Default language
+  const [currency, setCurrency] = useState('USD');
+  const [language, setLanguage] = useState('en');
 
-  // Initialize incomes with an empty array or with localStorage data if available
   const [incomes, setIncomes] = useState(() => {
     const savedIncomes = localStorage.getItem('incomes');
     return savedIncomes
@@ -26,12 +25,11 @@ export const CurrencyProvider = ({ children }) => {
     { description: 'Investments', amount: 1000, date: '2024-10-15' },
   ]);
 
-  // Save incomes to localStorage whenever incomes state changes
   useEffect(() => {
     if (incomes.length > 0) {
       localStorage.setItem('incomes', JSON.stringify(incomes));
     }
-  }, [incomes]); // Save to localStorage whenever incomes is updated
+  }, [incomes]);
 
   return (
     <CurrencyContext.Provider
