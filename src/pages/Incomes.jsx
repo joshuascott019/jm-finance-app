@@ -4,6 +4,7 @@ import { formatCurrency } from '../components/formatCurrency';
 
 const Incomes = () => {
   const { incomes, setIncomes, currency } = useContext(CurrencyContext);
+  const incomeSources = ['Salary', 'Pay Day', 'Freelance', 'Gift', 'Donation'];
 
   const [newIncome, setNewIncome] = useState({
     description: '',
@@ -60,14 +61,30 @@ const Incomes = () => {
       <form onSubmit={handleFormSubmit} className="mb-6">
         <div className="mb-4">
           <label className="block text-slate-700">Description</label>
-          <input
+          {/* <input
             type="text"
             value={newIncome.description}
             onChange={(e) =>
               setNewIncome({ ...newIncome, description: e.target.value })
             }
             className="w-full p-2 mt-1 border border-slate-300 rounded-md"
-          />
+          /> */}
+          <select
+            value={newIncome.description}
+            onChange={(e) =>
+              setNewIncome({ ...newIncome, description: e.target.value })
+            }
+            className="w-full p-2 mt-1 border border-slate-300 rounded-md"
+          >
+            <option value="" disabled>
+              [Select source]
+            </option>
+            {incomeSources.map((source) => (
+              <option key={source} value={source}>
+                {source}
+              </option>
+            ))}
+          </select>
         </div>
         <div className="mb-4">
           <label className="block text-slate-700">Amount</label>
