@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { CurrencyContext } from '../components/CurrencyContext'; // Import the Currency context
+import { formatCurrency } from '../components/formatCurrency';
 
 const Savings = () => {
   const { currency, savings, setSavings } = useContext(CurrencyContext);
@@ -15,7 +16,7 @@ const Savings = () => {
   // Handle form submission (for both adding and editing)
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    if (newSavings.description && newSavings.amount && newSavings.date) {
+    if (newSavings.description && newSavings.amount > 0 && newSavings.date) {
       if (editingIndex !== null) {
         // If we are editing, update the specific savings entry
         const updatedSavings = savings.map((savings, index) =>
@@ -98,7 +99,7 @@ const Savings = () => {
           <div key={index} className="mb-4">
             <p className="text-xl text-slate-800">{savings.description}</p>
             <p className="text-2xl text-blue-600 font-bold">
-              {savings.amount} {currency}
+              {formatCurrency(savings.amount, currency)} {currency}
             </p>
             <p className="text-sm text-slate-600">{savings.date}</p>
 

@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { CurrencyContext } from '../components/CurrencyContext'; // Import the context
+import { formatCurrency } from '../components/formatCurrency';
 
 const Incomes = () => {
   const { incomes, setIncomes, currency } = useContext(CurrencyContext); // Access incomes and setter from context
@@ -15,7 +16,7 @@ const Incomes = () => {
   // Handle form submission (for both adding and editing)
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    if (newIncome.description && newIncome.amount && newIncome.date) {
+    if (newIncome.description && newIncome.amount > 0 && newIncome.date) {
       if (editingIndex !== null) {
         // If we are editing, update the specific income entry
         const updatedIncomes = incomes.map((income, index) =>
@@ -98,7 +99,7 @@ const Incomes = () => {
           <div key={index} className="mb-4">
             <p className="text-xl text-slate-800">{income.description}</p>
             <p className="text-2xl text-green-600 font-bold">
-              {income.amount} {currency}
+              {formatCurrency(income.amount, currency)} {currency}
             </p>
             <p className="text-sm text-slate-600">{income.date}</p>
 
