@@ -1,5 +1,9 @@
 import React, { useContext, useState } from 'react';
 import { CurrencyContext } from '../components/CurrencyContext';
+import { formatCurrency } from '../components/formatCurrency';
+import { FaEdit } from 'react-icons/fa';
+import { MdDeleteForever } from 'react-icons/md';
+
 const Savings = () => {
   const { currency, savings, setSavings } = useContext(CurrencyContext);
 
@@ -83,6 +87,34 @@ const Savings = () => {
           {editingIndex !== null ? 'Update Savings' : 'Add Savings'}
         </button>
       </form>
+      <div className="bg-slate-100 p-4 rounded-md shadow-md">
+        {savings.map((savings, index) => (
+          <div key={index} className="mb-4 flex items-center justify-between">
+            <div>
+              <p className="text-xl text-slate-800">{savings.description}</p>
+              <p className="text-sm text-slate-600">{savings.date}</p>
+            </div>
+            <p className="text-2xl text-slate-600 font-bold">
+              {formatCurrency(savings.amount, currency)} {currency}
+            </p>
+
+            <div className="mt-2">
+              <button
+                onClick={() => handleEdit(index)}
+                className="text-slate-800 text-4xl px-4 py-2 rounded-md mr-2"
+              >
+                <FaEdit />
+              </button>
+              <button
+                onClick={() => handleDelete(index)}
+                className="text-slate-800 text-4xl px-4 py-2 rounded-md "
+              >
+                <MdDeleteForever />
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

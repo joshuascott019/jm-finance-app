@@ -1,5 +1,8 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { CurrencyContext } from '../components/CurrencyContext';
+import { CurrencyContext } from './CurrencyContext';
+import { formatCurrency } from './formatCurrency';
+import { FaEdit } from 'react-icons/fa';
+import { MdDeleteForever } from 'react-icons/md';
 
 const Incomes = () => {
   const { incomes, setIncomes, currency } = useContext(CurrencyContext);
@@ -48,7 +51,7 @@ const Incomes = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold text-slate-800 mb-6">Incomes</h1>
+      <h1 className="text-2xl font-bold text-slate-800 mb-6">Income</h1>
 
       <form onSubmit={handleFormSubmit} className="mb-6">
         <div className="mb-4">
@@ -110,6 +113,34 @@ const Incomes = () => {
           {editingIndex !== null ? 'Update Income' : 'Add Income'}
         </button>
       </form>
+      <div className="bg-slate-100 p-4 rounded-md shadow-md">
+        {incomes.map((income, index) => (
+          <div key={index} className="mb-4 flex items-center justify-between">
+            <div>
+              <p className="text-xl text-slate-800">{income.description}</p>
+              <p className="text-sm text-slate-600">{income.date}</p>
+            </div>
+            <p className="text-2xl text-slate-600 font-bold">
+              {formatCurrency(income.amount, currency)} {currency}
+            </p>
+
+            <div className="mt-2">
+              <button
+                onClick={() => handleEdit(index)}
+                className="text-slate-800 text-4xl px-4 py-2 rounded-md mr-2"
+              >
+                <FaEdit />
+              </button>
+              <button
+                onClick={() => handleDelete(index)}
+                className="text-slate-800 text-4xl px-4 py-2 rounded-md "
+              >
+                <MdDeleteForever />
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
