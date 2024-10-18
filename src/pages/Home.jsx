@@ -1,6 +1,9 @@
 import React, { useContext, useState } from 'react';
 import { CurrencyContext } from '../components/CurrencyContext'; // Import the Currency context
 import { formatCurrency } from '../components/formatCurrency'; // Import the currency formatter
+import Incomes from '../components/incomes';
+import Expenses from '../components/Expenses';
+import Savings from '../components/Savings';
 
 const Home = () => {
   const { incomes, currency, expenses, savings } = useContext(CurrencyContext); // Access the current currency
@@ -24,10 +27,15 @@ const Home = () => {
       <h1 className="text-2xl font-bold text-slate-800 mb-6">
         Finance Dashboard
       </h1>
+      <div className="flex justify-between">
+        <Incomes />
+        <Expenses />
+        <Savings />
+      </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-6">
         <div className="bg-slate-100 p-4 rounded-md shadow-md">
-          <h2 className="text-xl font-bold text-slate-800">Total Incomes</h2>
+          <h2 className="text-xl font-bold text-slate-800">Total Income</h2>
           <p className="text-2xl text-green-600 font-bold">
             {formatCurrency(totalIncomes, currency)}
           </p>
