@@ -28,7 +28,7 @@ const Incomes = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    if (newIncome.description && newIncome.amount > 0 && newIncome.date) {
+    if (newIncome.description && newIncome.amount && newIncome.date) {
       if (editingIndex !== null) {
         const updatedIncomes = incomes.map((income, index) =>
           index === editingIndex ? newIncome : income
