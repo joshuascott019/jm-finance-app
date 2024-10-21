@@ -49,12 +49,6 @@ const Home = () => {
           </p>
         </div>
         <div>
-          <h2 className="text-xl font-bold text-slate-800">Total Savings</h2>
-          <p className="text-2xl text-blue-600 font-bold">
-            {formatCurrency(totalSavings, currency)}
-          </p>
-        </div>
-        <div>
           <h2 className="text-xl font-bold text-slate-800">Remaining Bal.</h2>
           <p
             className={`text-2xl font-bold ${
@@ -62,6 +56,12 @@ const Home = () => {
             }`}
           >
             {formatCurrency(balance, currency)}
+          </p>
+        </div>
+        <div>
+          <h2 className="text-xl font-bold text-slate-800">Total Savings</h2>
+          <p className="text-2xl text-blue-600 font-bold">
+            {formatCurrency(totalSavings, currency)}
           </p>
         </div>
       </div>
